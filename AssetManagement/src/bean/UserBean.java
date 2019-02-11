@@ -1,6 +1,6 @@
 package bean;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -99,5 +99,6 @@ public Date getDoj() {
 public void setDoj(Date doj) {
 	this.doj = doj;
 }
+
 
 }

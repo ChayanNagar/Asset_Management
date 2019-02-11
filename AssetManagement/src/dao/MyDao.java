@@ -1,8 +1,14 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,6 +17,7 @@ import org.hibernate.criterion.Restrictions;
 
 import bean.AdminBean;
 import bean.UserBean;
+
 
 
 public class MyDao {
@@ -78,7 +85,33 @@ public ArrayList<UserBean>   viewUser()
       return list;
 	
 }
+public ArrayList<UserBean> getUserDetailsByUid(int userid)
+{
+	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
 
+	 Session ss=sf.openSession();
+	
+	 Criteria ct=ss.createCriteria(UserBean.class);
+		ct.add(Restrictions.eq("uid",userid));
+	 ArrayList<UserBean> list=(ArrayList<UserBean>)ct.list();
+
+   return list;
+
+}
+public int statusUpdateUser(UserBean e)
+{   int x=0;
+	
+	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
+	Session ss=sf.openSession();
+	Transaction tt=ss.beginTransaction();
+	ss.update(e);
+			x=1;
+	
+	tt.commit();
+	ss.close();
+	return x;
+
+}
 
 }
 

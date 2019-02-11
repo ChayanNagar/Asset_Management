@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.UserBean;
+
 import dao.MyDao;
 
 
@@ -93,5 +94,36 @@ public class Admin_MainControllers {
 				 mv.addObject("LIST",list);
 		 return mv;    
   		  	}
+     @RequestMapping("/UserStatus")
+     public ModelAndView userStatus(@RequestParam int userid)//Model Attribute annotation as method parameter
+  	{
+			MyDao m=new MyDao();
+
+	  		ArrayList<UserBean> list= m.getUserDetailsByUid(userid);
+
+  		ModelAndView mv=null;
+  		
+  		 			mv=new ModelAndView("UserStatusUpdate","msg","Welcome at Admin Home") ;  
+  		            mv.addObject("LIST",list);
+  		
+  		   return mv;
+  	}
+     @RequestMapping("/userStatusUpdate")
+  	public ModelAndView userStatusUpdate(@ModelAttribute UserBean e)//Model Attribute annotation as method parameter
+  	{
+  			MyDao m=new MyDao();
+  		ModelAndView mv=null;
+  		
+  		int x= m.statusUpdateUser(e);
+  		   if(x==1)
+  		   { ArrayList<UserBean> list= m.viewUser();
+		      mv=new ModelAndView("ViewUserDetails","msg1","Status Updated Successfully") ; 
+		      mv.addObject("LIST",list);
+  		   }
+  		   else {
+  			   mv=new ModelAndView("ViewUserDetails","msg1","Status not Updated Successfully") ;
+  		   }
+  		   return mv;
+  	}
      
 }
