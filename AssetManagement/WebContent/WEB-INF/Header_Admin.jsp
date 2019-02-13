@@ -6,6 +6,7 @@ response.addHeader("cache-control","no-store");
 response.addHeader("expire","0");
 %>
 
+
 <head>
 <title>Admin Page</title>
 
@@ -31,10 +32,11 @@ response.addHeader("expire","0");
      <ul class="nav navbar-nav">
      
        
-<li class="active"><a href="ALoginCheck"> Admin Home Page</a></li>
+<li class="active"><a href="adminHome"> Admin Home Page</a></li>
             <li><a href="user_Insert">Insert User Details</a></li>
       <li><a href="viewUserDetails">View User Details</a></li>
-      
+      <li><a href="addAsset">Add Asset Details</a></li>
+      <li><a href="viewAsset">View Asset Details</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

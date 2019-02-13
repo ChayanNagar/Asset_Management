@@ -36,6 +36,11 @@ $(document).ready(function(){
 </script>
  
    <body >
+   <% 
+	  	String uname=(String)session.getAttribute("uname");
+        if(uname==null)
+	   response.sendRedirect("/");
+	   %>
    <center>
 <h1 ><font color="red">Welcome At Admin Home,${uname}</font></h1>
  </center>

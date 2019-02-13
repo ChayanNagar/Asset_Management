@@ -40,6 +40,11 @@
  
    <body >
    <center>
+   <% 
+	  	String uname=(String)session.getAttribute("uname");
+        if(uname==null)
+	   response.sendRedirect("/");
+	   %>
 <h1 ><font color="red">Welcome at Admin Home,${uname}</font></h1>
  </center>
   <% 

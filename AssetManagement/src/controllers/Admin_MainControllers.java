@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.AssetBean;
 import bean.UserBean;
 
 import dao.MyDao;
 
 
 @Controller
-@SessionAttributes("uname")
+//.@SessionAttributes("uname")
 public class Admin_MainControllers {
 	MyDao m=null;
 	
@@ -29,12 +30,19 @@ public class Admin_MainControllers {
 		
 	}
      @RequestMapping("/")
-	public String adminLogin()
+	public String homePage()
 	{
 	   return "AdminLogin";
 	}
+    
+     @RequestMapping("/adminHome")
+ 	public String adminHome()
+ 	{
+    	 
+ 	   return "AdminHome";
+ 	}
      @RequestMapping("/ALoginCheck")
-     public ModelAndView adminCheck(@RequestParam String uname,@RequestParam String password)
+     public ModelAndView adminCheck(HttpServletRequest request,@RequestParam String uname,@RequestParam String password)
  	{
  	  ModelAndView mv=null;
  
@@ -42,13 +50,15 @@ public class Admin_MainControllers {
  		 if(x==1)
  		   {
  		      mv=new ModelAndView("AdminHome","msg","Welcome At Admin Home") ;
- 			 mv.addObject("uname",uname);
- 			
+ 			// mv.addObject("uname",uname);
+ 		     HttpSession session=request.getSession();
+				session.setAttribute("uname",uname);
+		
  			 return mv;    
 
  		   }
  		   else {
- 			   mv=new ModelAndView("UserLogin","msg","Login Fail..Try Again") ;
+ 			   mv=new ModelAndView("AdminHome","msg","Login Fail..Try Again") ;
  		   }
  		   return mv;
  	}
@@ -76,9 +86,10 @@ public class Admin_MainControllers {
  		   return mv;
  	}
      @RequestMapping("/Logout")
-     public String logout(HttpServletRequest request){
-         HttpSession httpSession = request.getSession();
-         httpSession.invalidate();
+     public String logout(HttpSession session){
+    	// session.removeAttribute("uname");
+         session.invalidate();
+        // System.out.println("LOGOUT INVOKED...");
          return "AdminLogin";
 
  	}
@@ -125,5 +136,40 @@ public class Admin_MainControllers {
   		   }
   		   return mv;
   	}
+     @RequestMapping("/addAsset")
+     public String addAsset()
+ 	{
+ 	 return "InsertAsset";
+ 		
+ 	}
+     @RequestMapping("/insertAssetDetails")
+  	public ModelAndView assetinsert(@ModelAttribute AssetBean e)//Model Attribute annotation as method parameter
+  	{
+  			MyDao m=new MyDao();
+  		ModelAndView mv=null;
+  		
+  		int x= m.insertAsset(e);
+  		   if(x==1)
+  		   {
+  			mv=new ModelAndView("InsertAsset","msg","Asset Inserted Succesfully") ;  
+  		   }
+  		   else {
+  			   mv=new ModelAndView("InsertAsset","msg","Data not inserted") ;
+  		   }
+  		   return mv;
+  	}
+     @RequestMapping("/viewAsset")
+   	public ModelAndView viewAssetDetails(@ModelAttribute AssetBean e)//Model Attribute annotation as method parameter
+   	{
+   			MyDao m=new MyDao();
+   		ModelAndView mv=null;
+   		
+   		ArrayList<AssetBean> list= m.viewAsset();
+
+   		mv=new ModelAndView("ViewAsset","msg","Welcome At Admin Home") ;
+ 				 mv.addObject("LIST",list);
+ 		 return mv;    
+   		  	}
+
      
 }

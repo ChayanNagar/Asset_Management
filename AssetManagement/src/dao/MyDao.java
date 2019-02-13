@@ -16,6 +16,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.criterion.Restrictions;
 
 import bean.AdminBean;
+import bean.AssetBean;
 import bean.UserBean;
 
 
@@ -112,6 +113,34 @@ public int statusUpdateUser(UserBean e)
 	return x;
 
 }
+public int insertAsset(AssetBean e)
+{   int x=0;
+	
+	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
+	Session ss=sf.openSession();
+	Transaction tt=ss.beginTransaction();
+	Object o=ss.save(e);
+	if(o!=null)
+		x=1;
+	
+	tt.commit();
+	ss.close();
+	return x;
+
+}
+public ArrayList<AssetBean>   viewAsset()
+{   
+	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
+
+	 Session ss=sf.openSession();
+	
+	 Criteria ct=ss.createCriteria(AssetBean.class);
+		ArrayList<AssetBean> list=(ArrayList<AssetBean>)ct.list();
+
+      return list;
+	
+}
+
 
 }
 

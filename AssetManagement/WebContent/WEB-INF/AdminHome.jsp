@@ -10,8 +10,13 @@
  <%@include file="Header_Admin.jsp" %>
 
 <center>
+  <% 
+	  	String uname=(String)session.getAttribute("uname");
+        if(uname==null)
+	   response.sendRedirect("/");
+	   %>
 
-<h1 ><font color="red">${msg},${uname}</font></h1>
+<h1 ><font color="red">${msg},<%=uname %></font></h1>
  
 
 
