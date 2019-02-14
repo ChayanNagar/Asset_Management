@@ -9,23 +9,35 @@ import javax.persistence.Table;
 @Table(name="admin_login")
 public class AdminBean {
 @Id
-@Column(name="username")	
-String uname;
-@Column(name="pwd")
-String password;
-public String getUname() {
-	return uname;
+@Column(name="email_id")	
+String email;
+@Column(name="password")
+String pwd;
+String Designation;
+public String getDesignation() {
+	return Designation;
 }
 
-public void setUname(String uname) {
-	this.uname = uname;
+public void setDesignation(String designation) {
+	Designation = designation;
 }
 
-public String getPassword() {
-	return password;
+
+public String getEmail() {
+	return email;
 }
 
-public void setPassword(String password) {
-	this.password = password;
+public void setEmail(String email) {
+	this.email = email;
 }
+
+public String getPwd() {
+	return pwd;
+}
+
+public void setPwd(String pwd) {
+	this.pwd = pwd;
+}
+
+
 }

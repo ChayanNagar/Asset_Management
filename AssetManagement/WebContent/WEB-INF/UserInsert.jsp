@@ -37,12 +37,12 @@ $(document).ready(function(){
  
    <body >
    <% 
-	  	String uname=(String)session.getAttribute("uname");
-        if(uname==null)
+	  	String email=(String)session.getAttribute("email");
+        if(email==null)
 	   response.sendRedirect("/");
 	   %>
    <center>
-<h1 ><font color="red">Welcome At Admin Home,${uname}</font></h1>
+<h1 ><font color="red">Welcome Admin ,${email}</font></h1>
  </center>
    
 

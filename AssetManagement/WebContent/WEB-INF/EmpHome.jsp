@@ -7,20 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
- <%@include file="Header_Admin.jsp" %>
+ <%@include file="Header_Employee.jsp" %>
 
 <center>
-  <% 
+ <% 
 	  	String email=(String)session.getAttribute("email");
         if(email==null)
 	   response.sendRedirect("/");
 	   %>
-
-<h1 ><font color="red">Welcome At Admin Home,<%=email %></font></h1>
- 
-
+	   <h1 ><font color="red">Welcome At Employee Home,<%=email %></font></h1>
+	   
 
 </center>
-
 </body>
 </html>

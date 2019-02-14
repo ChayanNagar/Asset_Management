@@ -19,7 +19,7 @@ import dao.MyDao;
 
 
 @Controller
-//.@SessionAttributes("uname")
+//.@SessionAttributes("email")
 public class Admin_MainControllers {
 	MyDao m=null;
 	
@@ -41,27 +41,75 @@ public class Admin_MainControllers {
     	 
  	   return "AdminHome";
  	}
-     @RequestMapping("/ALoginCheck")
-     public ModelAndView adminCheck(HttpServletRequest request,@RequestParam String uname,@RequestParam String password)
+     @RequestMapping("/ALoginCheck")//Login check for admin,emp,manager,support
+     public ModelAndView adminCheck(HttpServletRequest request,@RequestParam String email,@RequestParam String pwd,@RequestParam String Designation)
  	{
+    	//System.out.println(email+" "+pwd+"  "+Designation);
  	  ModelAndView mv=null;
- 
- 		int x=m.adminCheck(uname,password);
- 		 if(x==1)
+         if(Designation.equals("Admin"))
+         { 		int x=m.adminCheck(email,pwd,Designation);
+  		//System.out.println("x="+x);
+
+		 if(x==1 && Designation.equals("Admin"))
  		   {
- 		      mv=new ModelAndView("AdminHome","msg","Welcome At Admin Home") ;
- 			// mv.addObject("uname",uname);
+ 		      mv=new ModelAndView("AdminHome") ;
+ 			 mv.addObject("email",email);
  		     HttpSession session=request.getSession();
-				session.setAttribute("uname",uname);
+				session.setAttribute("email",email);
 		
  			 return mv;    
 
  		   }
- 		   else {
- 			   mv=new ModelAndView("AdminHome","msg","Login Fail..Try Again") ;
+         }
+         if(Designation.equals("Employee"))
+         {
+ 		int x=m.empCheck(email,pwd,Designation);
+ 		//System.out.println("x="+x);
+ 		 if(x==1 && Designation.equals("Employee"))
+ 		   {
+ 		      mv=new ModelAndView("EmpHome") ;
+ 			 mv.addObject("email",email);
+ 		     HttpSession session=request.getSession();
+				session.setAttribute("email",email);
+		
+ 			 return mv;    
+
  		   }
- 		   return mv;
- 	}
+ 		 }
+          if(Designation.equals("Manager"))
+         {
+ 		int x=m.managerCheck(email,pwd,Designation);
+ 		 if(x==1 && Designation.equals("Manager"))
+ 		   {
+ 		      mv=new ModelAndView("ManagerHome") ;
+ 			 mv.addObject("email",email);
+ 		     HttpSession session=request.getSession();
+				session.setAttribute("email",email);
+		
+ 			 return mv;    
+
+ 		   }
+         }
+          if(Designation.equals("Support"))
+         {
+ 		int x=m.supportCheck(email,pwd,Designation);
+ 		 if(x==1 && Designation.equals("Support"))
+ 		   {
+ 		      mv=new ModelAndView("SupportHome") ;
+ 			 mv.addObject("email",email);
+ 		     HttpSession session=request.getSession();
+				session.setAttribute("email",email);
+		
+		 return mv;    
+		   }
+        }
+         else {
+        	   mv=new ModelAndView("AdminLogin","msg","Login Fail..Try Again") ;
+     		   }
+     		   return mv;
+     	
+   
+       }
      
      @RequestMapping("/user_Insert")
      public String userInsert()
@@ -87,7 +135,7 @@ public class Admin_MainControllers {
  	}
      @RequestMapping("/Logout")
      public String logout(HttpSession session){
-    	// session.removeAttribute("uname");
+    	// session.removeAttribute("email");
          session.invalidate();
         // System.out.println("LOGOUT INVOKED...");
          return "AdminLogin";
@@ -101,7 +149,7 @@ public class Admin_MainControllers {
   		
   		ArrayList<UserBean> list= m.viewUser();
 
-  		mv=new ModelAndView("ViewUserDetails","msg","Welcome At Admin Home") ;
+  		mv=new ModelAndView("ViewUserDetails") ;
 				 mv.addObject("LIST",list);
 		 return mv;    
   		  	}
@@ -114,7 +162,7 @@ public class Admin_MainControllers {
 
   		ModelAndView mv=null;
   		
-  		 			mv=new ModelAndView("UserStatusUpdate","msg","Welcome at Admin Home") ;  
+  		 			mv=new ModelAndView("UserStatusUpdate") ;  
   		            mv.addObject("LIST",list);
   		
   		   return mv;
@@ -166,7 +214,7 @@ public class Admin_MainControllers {
    		
    		ArrayList<AssetBean> list= m.viewAsset();
 
-   		mv=new ModelAndView("ViewAsset","msg","Welcome At Admin Home") ;
+   		mv=new ModelAndView("ViewAsset") ;
  				 mv.addObject("LIST",list);
  		 return mv;    
    		  	}

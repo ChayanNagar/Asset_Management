@@ -16,11 +16,10 @@
 	
 <center>
 <form action="ALoginCheck" method="post">
-  
-
+  <h2>${msg}</h2>
   <div class="container">
   <div class="col-sm-5">
- \
+ 
   <div class="form-group">
     <label for="designation">Designation:</label>
     <select name="Designation" id="desig">
@@ -33,16 +32,14 @@
   </div>
   
  
-    <label for="uname" class="container" style="background-color:#f1f1f1"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label for="uname" class="container" style="background-color:#f1f1f1"><b>Email-Id</b></label>
+    <input type="text" placeholder="Enter EmailId" name="email" required>
      <br></br>
     <label for="psw" class="container" style="background-color:#f1f1f1"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
+    <input type="password" placeholder="Enter Password" name="pwd" required>
         
    <center> <button type="submit">Login</button></center>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
+   
   </div>
 
   <div class="container" style="background-color:#f1f1f1">

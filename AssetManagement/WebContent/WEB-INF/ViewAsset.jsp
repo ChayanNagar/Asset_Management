@@ -15,12 +15,12 @@
 <body>
 <center>
 <% 
-	  	String uname=(String)session.getAttribute("uname");
-        if(uname==null)
+	  	String email=(String)session.getAttribute("email");
+        if(email==null)
 	   response.sendRedirect("/");
        	   %>
 
-<h1 ><font color="red">${msg}, ${uname}</font></h2>
+<h1 ><font color="red">Welcome Admin, ${email}</font></h2>
 </center>
 
  <div class="container">

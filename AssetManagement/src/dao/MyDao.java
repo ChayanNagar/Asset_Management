@@ -27,9 +27,9 @@ public MyDao()
 
 	SessionFactory sf=new AnnotationConfiguration().configure().buildSessionFactory();
 	AdminBean a=new AdminBean();
-	a.setUname("chayan");
-	a.setPassword("chayan");
-
+	a.setEmail("chayan@gmail.com");
+	a.setPwd("chayan");
+    a.setDesignation("Admin");
 	Session ss=sf.openSession();
 	Transaction tt=ss.beginTransaction();
 	ss.saveOrUpdate(a);
@@ -38,7 +38,7 @@ public MyDao()
 	
 		
 }
-public int  adminCheck(String uname,String password)
+public int  adminCheck(String email,String password,String Designation)//method for admin login check
 {  	
 	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
 int x=0;
@@ -46,9 +46,58 @@ int x=0;
       //Transaction tt=ss.beginTransaction();
 
 	Criteria ct=ss.createCriteria(AdminBean.class);
-	ArrayList<AdminBean> list=(ArrayList<AdminBean>)ct.list();
-	ct.add(Restrictions.eq("username", uname));
+	
+	ct.add(Restrictions.eq("email", email));
 	ct.add(Restrictions.eq("pwd", password));
+	ct.add(Restrictions.eq("Designation", Designation));
+	ArrayList<AdminBean> list=(ArrayList<AdminBean>)ct.list();
+     
+			if(list.isEmpty())
+    	 x=0;
+     else
+    	 x=1;
+     
+     
+     
+      ss.close();
+      return x;
+}
+public int  empCheck(String email,String password,String Designation)//method for emp login check
+{  	
+	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
+int x=0;
+	 Session ss=sf.openSession();
+      //Transaction tt=ss.beginTransaction();
+
+	Criteria ct=ss.createCriteria(UserBean.class);
+	ct.add(Restrictions.eq("email", email));
+	ct.add(Restrictions.eq("pwd", password));
+	ct.add(Restrictions.eq("Designation", Designation));
+	ArrayList<UserBean> list=(ArrayList<UserBean>)ct.list();
+	
+	 if(list.isEmpty())
+    	 x=0;
+     else
+    	 x=1;
+     
+     
+     
+      ss.close();
+      return x;
+}
+public int  managerCheck(String email,String password,String Designation)//method for manager login check
+{  	
+	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
+int x=0;
+	 Session ss=sf.openSession();
+      //Transaction tt=ss.beginTransaction();
+
+	Criteria ct=ss.createCriteria(UserBean.class);
+	ct.add(Restrictions.eq("email", email));
+	ct.add(Restrictions.eq("pwd", password));
+	ct.add(Restrictions.eq("Designation", Designation));
+	ArrayList<UserBean> list=(ArrayList<UserBean>)ct.list();
+
      if(list.isEmpty())
     	 x=0;
      else
@@ -59,6 +108,30 @@ int x=0;
       ss.close();
       return x;
 }
+public int  supportCheck(String email,String password,String Designation)//method for support login check
+{  	
+	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
+int x=0;
+	 Session ss=sf.openSession();
+      //Transaction tt=ss.beginTransaction();
+
+	Criteria ct=ss.createCriteria(UserBean.class);
+	
+	ct.add(Restrictions.eq("email", email));
+	ct.add(Restrictions.eq("pwd", password));
+	ct.add(Restrictions.eq("Designation", Designation));
+	ArrayList<UserBean> list=(ArrayList<UserBean>)ct.list();
+     if(list.isEmpty())
+    	 x=0;
+     else
+    	 x=1;
+     
+     
+     
+      ss.close();
+      return x;
+}
+
 public int insertUser(UserBean e)
 {   int x=0;
 	

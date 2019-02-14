@@ -41,11 +41,11 @@
    <body >
    <center>
    <% 
-	  	String uname=(String)session.getAttribute("uname");
-        if(uname==null)
+	  	String email=(String)session.getAttribute("email");
+        if(email==null)
 	   response.sendRedirect("/");
 	   %>
-<h1 ><font color="red">Welcome at Admin Home,${uname}</font></h1>
+<h1 ><font color="red">Welcome Admin ,${email}</font></h1>
  </center>
   <% 
  ArrayList<UserBean> list=(ArrayList<UserBean>)request.getAttribute("LIST");
