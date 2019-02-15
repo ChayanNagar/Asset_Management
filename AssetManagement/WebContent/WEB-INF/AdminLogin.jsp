@@ -32,8 +32,8 @@
   </div>
   
  
-    <label for="uname" class="container" style="background-color:#f1f1f1"><b>Email-Id</b></label>
-    <input type="text" placeholder="Enter EmailId" name="email" required>
+    <label for="uname" class="container" style="background-color:#f1f1f1"><b>User/Admin Id</b></label>
+    <input type="text" placeholder="Enter User/Admin Id" name="eid" required>
      <br></br>
     <label for="psw" class="container" style="background-color:#f1f1f1"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="pwd" required>

@@ -5,12 +5,12 @@
  <%@include file="Header_Admin.jsp" %>
     <body >
    <% 
-	  	String email=(String)session.getAttribute("email");
-        if(email==null)
+	  	int eid=(Integer)session.getAttribute("eid");
+        if(eid==0)
 	   response.sendRedirect("/");
 	   %>
    <center>
-<h1 ><font color="red">Welcome Admin ,${email}</font></h1>
+<h1 ><font color="red">Welcome Admin ,${eid}</font></h1>
  </center>
    
 

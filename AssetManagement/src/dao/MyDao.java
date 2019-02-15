@@ -27,9 +27,11 @@ public MyDao()
 
 	SessionFactory sf=new AnnotationConfiguration().configure().buildSessionFactory();
 	AdminBean a=new AdminBean();
-	a.setEmail("chayan@gmail.com");
+	//a.setEmail("chayan@gmail.com");
+	a.setAaid(121);
 	a.setPwd("chayan");
     a.setDesignation("Admin");
+   
 	Session ss=sf.openSession();
 	Transaction tt=ss.beginTransaction();
 	ss.saveOrUpdate(a);
@@ -38,7 +40,7 @@ public MyDao()
 	
 		
 }
-public int  adminCheck(String email,String password,String Designation)//method for admin login check
+public int  adminCheck(int eid,String password,String Designation)//method for admin login check
 {  	
 	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
 int x=0;
@@ -47,7 +49,8 @@ int x=0;
 
 	Criteria ct=ss.createCriteria(AdminBean.class);
 	
-	ct.add(Restrictions.eq("email", email));
+	//ct.add(Restrictions.eq("email", email));
+	ct.add(Restrictions.eq("aaid", eid));
 	ct.add(Restrictions.eq("pwd", password));
 	ct.add(Restrictions.eq("Designation", Designation));
 	ArrayList<AdminBean> list=(ArrayList<AdminBean>)ct.list();
@@ -62,7 +65,7 @@ int x=0;
       ss.close();
       return x;
 }
-public int  empCheck(String email,String password,String Designation)//method for emp login check
+public int  empCheck(int eid,String password,String Designation)//method for emp login check
 {  	
 	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
 int x=0;
@@ -70,7 +73,7 @@ int x=0;
       //Transaction tt=ss.beginTransaction();
 
 	Criteria ct=ss.createCriteria(UserBean.class);
-	ct.add(Restrictions.eq("email", email));
+	ct.add(Restrictions.eq("eeid", eid));
 	ct.add(Restrictions.eq("pwd", password));
 	ct.add(Restrictions.eq("Designation", Designation));
 	ArrayList<UserBean> list=(ArrayList<UserBean>)ct.list();
@@ -85,7 +88,7 @@ int x=0;
       ss.close();
       return x;
 }
-public int  managerCheck(String email,String password,String Designation)//method for manager login check
+public int  managerCheck(int eid,String password,String Designation)//method for manager login check
 {  	
 	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
 int x=0;
@@ -93,7 +96,7 @@ int x=0;
       //Transaction tt=ss.beginTransaction();
 
 	Criteria ct=ss.createCriteria(UserBean.class);
-	ct.add(Restrictions.eq("email", email));
+	ct.add(Restrictions.eq("mmid", eid));
 	ct.add(Restrictions.eq("pwd", password));
 	ct.add(Restrictions.eq("Designation", Designation));
 	ArrayList<UserBean> list=(ArrayList<UserBean>)ct.list();
@@ -108,7 +111,7 @@ int x=0;
       ss.close();
       return x;
 }
-public int  supportCheck(String email,String password,String Designation)//method for support login check
+public int  supportCheck(int eid,String password,String Designation)//method for support login check
 {  	
 	SessionFactory sf=new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
 int x=0;
@@ -117,7 +120,7 @@ int x=0;
 
 	Criteria ct=ss.createCriteria(UserBean.class);
 	
-	ct.add(Restrictions.eq("email", email));
+	ct.add(Restrictions.eq("ssid", eid));
 	ct.add(Restrictions.eq("pwd", password));
 	ct.add(Restrictions.eq("Designation", Designation));
 	ArrayList<UserBean> list=(ArrayList<UserBean>)ct.list();

@@ -11,11 +11,11 @@
 
 <center>
 <% 
-	  	String email=(String)session.getAttribute("email");
-        if(email==null)
+	  	int eid=(Integer)session.getAttribute("eid");
+        if(eid==0)
 	   response.sendRedirect("/");
 	   %>
-	   <h1 ><font color="red">Welcome At Support Home,<%=email %></font></h1>
+	   <h1 ><font color="red">Welcome At Support Home,<%=eid %></font></h1>
 	</center>   
 </body>
 </html>

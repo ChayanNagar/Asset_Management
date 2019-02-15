@@ -35,7 +35,7 @@ response.addHeader("expire","0");
 <li class="active"><a href="empHome"> Employee Home Page</a></li>
             <li><a href="#">Profile</a></li>
       <li><a href="empRequest">Create Request</a></li>
-      <li><a href="#">View My Request</a></li>
+      <li><a href="viewRequest">View My Request</a></li>
       <li><a href="#">My Asset</a></li>
       <li><a href="#">Assets Transfer</a></li>
     </ul>

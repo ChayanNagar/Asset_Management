@@ -18,12 +18,12 @@
 	     {
 		  $("#mid").show();
 		  $("#eid").hide();
-		  $("#sid").hide();
+		  $("#sid").show();
 	  	    }
 	   if(v=='Employee')
 	  { 
 	  $("#eid").show();
-	  $("#mid").hide();
+	  $("#mid").show();
 	  $("#sid").hide();
 	  }
 	   if(v=='Support')
@@ -41,11 +41,11 @@
    <body >
    <center>
    <% 
-	  	String email=(String)session.getAttribute("email");
-        if(email==null)
+	  	int eid=(Integer)session.getAttribute("eid");
+        if(eid==0)
 	   response.sendRedirect("/");
 	   %>
-<h1 ><font color="red">Welcome Admin ,${email}</font></h1>
+<h1 ><font color="red">Welcome Admin ,${eid}</font></h1>
  </center>
   <% 
  ArrayList<UserBean> list=(ArrayList<UserBean>)request.getAttribute("LIST");

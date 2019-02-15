@@ -19,7 +19,7 @@ import dao.MyDao;
 
 
 @Controller
-//.@SessionAttributes("email")
+//.@SessionAttributes("eid")
 public class Admin_MainControllers {
 	MyDao m=null;
 	
@@ -42,20 +42,20 @@ public class Admin_MainControllers {
  	   return "AdminHome";
  	}
      @RequestMapping("/ALoginCheck")//Login check for admin,emp,manager,support
-     public ModelAndView adminCheck(HttpServletRequest request,@RequestParam String email,@RequestParam String pwd,@RequestParam String Designation)
+     public ModelAndView adminCheck(HttpServletRequest request,@RequestParam int eid,@RequestParam String pwd,@RequestParam String Designation)
  	{
-    	//System.out.println(email+" "+pwd+"  "+Designation);
+    	//System.out.println(eid+" "+pwd+"  "+Designation);
  	  ModelAndView mv=null;
          if(Designation.equals("Admin"))
-         { 		int x=m.adminCheck(email,pwd,Designation);
+         { 		int x=m.adminCheck(eid,pwd,Designation);
   		//System.out.println("x="+x);
 
 		 if(x==1 && Designation.equals("Admin"))
  		   {
  		      mv=new ModelAndView("AdminHome") ;
- 			 mv.addObject("email",email);
+ 			 mv.addObject("eid",eid);
  		     HttpSession session=request.getSession();
-				session.setAttribute("email",email);
+				session.setAttribute("eid",eid);
 		
  			 return mv;    
 
@@ -63,14 +63,14 @@ public class Admin_MainControllers {
          }
          if(Designation.equals("Employee"))
          {
- 		int x=m.empCheck(email,pwd,Designation);
+ 		int x=m.empCheck(eid,pwd,Designation);
  		//System.out.println("x="+x);
  		 if(x==1 && Designation.equals("Employee"))
  		   {
  		      mv=new ModelAndView("EmpHome") ;
- 			 mv.addObject("email",email);
+ 			 mv.addObject("eid",eid);
  		     HttpSession session=request.getSession();
-				session.setAttribute("email",email);
+				session.setAttribute("eid",eid);
 		
  			 return mv;    
 
@@ -78,13 +78,13 @@ public class Admin_MainControllers {
  		 }
           if(Designation.equals("Manager"))
          {
- 		int x=m.managerCheck(email,pwd,Designation);
+ 		int x=m.managerCheck(eid,pwd,Designation);
  		 if(x==1 && Designation.equals("Manager"))
  		   {
  		      mv=new ModelAndView("ManagerHome") ;
- 			 mv.addObject("email",email);
+ 			 mv.addObject("eid",eid);
  		     HttpSession session=request.getSession();
-				session.setAttribute("email",email);
+				session.setAttribute("eid",eid);
 		
  			 return mv;    
 
@@ -92,13 +92,13 @@ public class Admin_MainControllers {
          }
           if(Designation.equals("Support"))
          {
- 		int x=m.supportCheck(email,pwd,Designation);
+ 		int x=m.supportCheck(eid,pwd,Designation);
  		 if(x==1 && Designation.equals("Support"))
  		   {
  		      mv=new ModelAndView("SupportHome") ;
- 			 mv.addObject("email",email);
+ 			 mv.addObject("eid",eid);
  		     HttpSession session=request.getSession();
-				session.setAttribute("email",email);
+				session.setAttribute("eid",eid);
 		
 		 return mv;    
 		   }
@@ -135,7 +135,7 @@ public class Admin_MainControllers {
  	}
      @RequestMapping("/Logout")
      public String logout(HttpSession session){
-    	// session.removeAttribute("email");
+    	// session.removeAttribute("eid");
          session.invalidate();
         // System.out.println("LOGOUT INVOKED...");
          return "AdminLogin";

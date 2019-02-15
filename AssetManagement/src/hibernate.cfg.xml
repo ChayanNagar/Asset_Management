@@ -12,5 +12,6 @@
     <mapping class="bean.AdminBean"/>
     <mapping class="bean.UserBean"/>
     <mapping class="bean.AssetBean"/>
+    <mapping class="bean.RequestBean"/>
   </session-factory>
 </hibernate-configuration>

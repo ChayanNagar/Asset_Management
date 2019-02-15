@@ -42,7 +42,7 @@ response.addHeader("expire","0");
       <li><a href="#">Employees & Assets</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="logOut"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      <li><a href="Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   
   
