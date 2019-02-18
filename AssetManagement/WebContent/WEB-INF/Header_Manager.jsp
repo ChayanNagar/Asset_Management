@@ -32,11 +32,11 @@ response.addHeader("expire","0");
      <ul class="nav navbar-nav">
      
        
-<li class="active"><a href="#"> Manager Home Page</a></li>
+<li class="active"><a href="managerHome"> Manager Home Page</a></li>
             <li><a href="#">Profile</a></li>
-      <li><a href="#">Create Request</a></li>
-      <li><a href="#">View My Request</a></li>
-        <li><a href="#">Pending Requests Approval</a></li>
+      <li><a href="createManagerRequest">Create Request</a></li>
+      <li><a href="viewManagerRequest">View My Request</a></li>
+        <li><a href="empPendingRequest">Pending Requests Approval</a></li>
       <li><a href="#">My Asset</a></li>
       <li><a href="#">Assets Transfer</a></li>
       <li><a href="#">Employees & Assets</a></li>

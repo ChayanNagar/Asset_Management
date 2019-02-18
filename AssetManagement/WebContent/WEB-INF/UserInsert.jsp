@@ -15,7 +15,7 @@ $(document).ready(function(){
 	     {
 		  $("#mid").show();
 		  $("#eid").hide();
-		  $("#sid").show();
+		  $("#sid").hide();
 	  	    }
 	   if(v=='Employee')
 	  { 
